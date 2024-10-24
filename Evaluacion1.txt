@@ -1,0 +1,3 @@
+Si necesito crear un programa que se ejecute en linux y windows, sin tener que crear ejecutables por cada plataforma, se debe utilizar un lenguaje: Interpretado | compilado
+
+Para instalar un programa realizado en java en la máquina del usuario final, se debe intalar previamente el  
