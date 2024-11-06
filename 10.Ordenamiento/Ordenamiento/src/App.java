@@ -2,14 +2,20 @@ import java.util.Random;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        int vector[] = generarVector(10000);
-        int clonSelecion[] = clonarVector(vector);
-        // imprimirVector(clonSelecion);
-        Medida medidaSeleccion = ordenarSeleccion(clonSelecion);
-        System.out.println(
-                "Selección: " + medidaSeleccion.comparaciones + " comparaciones, " + medidaSeleccion.intercambios
-                        + " intercambios, " + medidaSeleccion.tiempo + " milisegundos");
-        // imprimirVector(clonSelecion);
+        int vector[] = generarVector(10);
+
+        // SELECCIÓN
+        // int clonSelecion[] = clonarVector(vector);
+        // Medida medidaSeleccion = ordenarSeleccion(clonSelecion);
+        // System.out.println(
+        //         "Selección: " + medidaSeleccion.comparaciones + " comparaciones, " + medidaSeleccion.intercambios
+        //                 + " intercambios, " + medidaSeleccion.tiempo + " milisegundos");
+        
+        // BURBUJA
+        int clonBurbuja[] = clonarVector(vector);
+        imprimirVector(clonBurbuja);
+        ordenarBurbuja(clonBurbuja);
+        imprimirVector(clonBurbuja);
 
     }
 
@@ -37,6 +43,11 @@ public class App {
         medida.tiempo = termina - inicia;
 
         return medida;
+    }
+
+    public static Medida ordenarBurbuja(int vector[]) {
+        
+        return null;
     }
 
     public static int[] clonarVector(int vector[]) {
