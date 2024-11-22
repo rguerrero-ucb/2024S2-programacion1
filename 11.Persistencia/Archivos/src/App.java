@@ -1,14 +1,63 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 public class App {
     public static void main(String[] args) throws Exception {
-
-        escribirArchivo();
+        
+        //escribirArchivo();
         //leerArchivo();
+
+        //guardarBinario();
+        leerBinario();
+    }
+
+    public static void leerBinario(){
+        File file = new File("personas.dat");
+
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            ArrayList<Persona> personas = (ArrayList<Persona>) ois.readObject();
+
+            for (Persona persona : personas) {
+                System.out.println(persona.getId() + " - " + persona.getNombre());
+            }
+
+            ois.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    public static void guardarBinario(){
+        ArrayList<Persona> personas = new ArrayList<>();
+        personas.add(new Persona(1, "Juan"));
+        personas.add(new Persona(2, "Maria"));
+        personas.add(new Persona(3, "Pedro"));
+
+        File file = new File("personas.dat");
+
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+            oos.writeObject(personas);
+
+            oos.close();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 
     public static void escribirArchivo() {
@@ -18,7 +67,7 @@ public class App {
             FileWriter fw = new FileWriter(file);
             BufferedWriter bw = new BufferedWriter(fw);
 
-            bw.write("Hola Mundo");
+            bw.write("Hola Mundo"); 
             bw.newLine();
             bw.write("Adios Mundo");
 
